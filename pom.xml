@@ -37,7 +37,7 @@
         </repository>
         <repository>
             <id>destroystokyo-repo</id>
-            <url>https://destroystokyo.com/repo/repository/maven-public/</url>
+            <url>https://repo.songoda.com/artifactory/public/</url>
         </repository>
       <repository>
         <id>spigot-repo</id>
