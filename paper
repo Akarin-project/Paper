@@ -33,21 +33,21 @@ case "$1" in
     (
         set -e
         cd "$basedir"
-        scripts/rebuildPatches.sh "$basedir" || exit 1
+        scripts/rebuildPatches.sh "$basedir"  $gitcmd git am --skip || exit 1
     ) || failed=1
     ;;
     "p" | "patch")
     (
         set -e
         cd "$basedir"
-        scripts/build.sh "$basedir" "--skip"  || exit 1
+        scripts/build.sh "$basedir" "--skip" $gitcmd git am --skip || exit 1
     ) || failed=1
     ;;
     "j" | "jar")
     (
         set -e
         cd "$basedir"
-        scripts/build.sh "$basedir" "--jar" "--skip"  || exit 1
+        scripts/build.sh "$basedir" "--jar" $gitcmd git am --skip || exit 1
     ) || failed=1
     ;;
     "make")
@@ -55,7 +55,7 @@ case "$1" in
         if [[ "$2" = "bacon" ]] ; then
             set -e
             cd "$basedir"
-            scripts/build.sh "$basedir" "--jar" "--skip"
+            scripts/build.sh "$basedir" "--jar" $gitcmd git am --skip
         fi
     )
     ;;
@@ -106,6 +106,7 @@ case "$1" in
                 set -e
 
                 paperstash
+				$gitcmd git am --skip
                 $gitcmd rebase -i upstream/upstream
                 paperunstash
             )
@@ -117,6 +118,7 @@ case "$1" in
                 set -e
 
                 paperstash
+				$gitcmd git am --skip
                 $gitcmd rebase -i upstream/upstream
                 paperunstash
             )
@@ -126,7 +128,7 @@ case "$1" in
             unset PAPER_LAST_EDIT
             (
                 set -e
-
+                $gitcmd git am --skip
                 $gitcmd add .
                 $gitcmd commit --amend
                 $gitcmd rebase --continue
