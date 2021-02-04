@@ -24,28 +24,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <minecraft.version>1.12.2</minecraft.version>
     </properties>
 	
-        <!--  Akarin -->
+    <dependencies>
         <dependency>
-            <groupId>io.akarin</groupId>
-            <artifactId>legacylauncher</artifactId>
-            <version>1.26</version>
-        </dependency> 
-        <dependency>
-            <groupId>org.spongepowered</groupId>
-            <artifactId>mixin</artifactId>
-            <version>0.7.11-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.concurrent-locks</groupId>
-            <artifactId>concurrent-locks</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-            <version>2.6.3-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>minecraft-server</artifactId>
+            <version>${minecraft.version}-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -61,10 +48,6 @@
         <repository>
             <id>destroystokyo-repo</id>
             <url>https://destroystokyo.com/repo/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>josephworks</id>
-            <url>http://repo.josephworks.net/repository/maven-public/</url>
         </repository>
     </repositories>
 
