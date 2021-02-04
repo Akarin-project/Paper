@@ -25,7 +25,7 @@ SOURCE=$([[ "$SOURCE" = /* ]] && echo "$SOURCE" || echo "$PWD/${SOURCE#./}")
 basedir=$(dirname "$SOURCE")
 gitcmd="git -c commit.gpgsign=false"
 
-source "$basedir/scripts/functions.sh"
+source "$basedir/scripts/functions.sh" #patch
 
 failed=0
 case "$1" in
@@ -40,14 +40,14 @@ case "$1" in
     (
         set -e
         cd "$basedir"
-        scripts/build.sh "$basedir" || exit 1
+        scripts/build.sh "$basedir" "--skip"  || exit 1
     ) || failed=1
     ;;
     "j" | "jar")
     (
         set -e
         cd "$basedir"
-        scripts/build.sh "$basedir" "--jar" || exit 1
+        scripts/build.sh "$basedir" "--jar" "--skip"  || exit 1
     ) || failed=1
     ;;
     "make")
@@ -55,7 +55,7 @@ case "$1" in
         if [[ "$2" = "bacon" ]] ; then
             set -e
             cd "$basedir"
-            scripts/build.sh "$basedir" "--jar"
+            scripts/build.sh "$basedir" "--jar" "--skip"
         fi
     )
     ;;
