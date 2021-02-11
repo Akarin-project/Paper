@@ -36,7 +36,8 @@ function applyPatch {
 
     echo "  Applying patches to $target..."
 
-    $gitcmd am --abort >/dev/null 2>&1
+    #$gitcmd am --abort >/dev/null 2>&1
+    $gitcmd am --skip
 
     # Special case Windows handling because of ARG_MAX constraint
     if [[ $windows == "true" ]]; then
@@ -47,6 +48,7 @@ function applyPatch {
     fi
 
     if [ "$?" != "0" ]; then
+	    $gitcmd am --skip
         echo "  Something did not apply cleanly to $target."
         echo "  Please review above details and finish the apply then"
         echo "  save the changes with rebuildPatches.sh"
@@ -55,6 +57,7 @@ function applyPatch {
         # users will need to rebuild from that point and then re-run the patch
         # process to continue
         if [[ $windows == "true" ]]; then
+		    $gitcmd am --skip
             echo ""
             echo "  Because you're on Windows you'll need to finish the AM,"
             echo "  rebuild all patches, and then re-run the patch apply again."
