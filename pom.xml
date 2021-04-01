@@ -26,6 +26,7 @@
     </properties>
 	
         <!--  Akarin -->
+    <dependencies>
         <dependency>
             <groupId>io.akarin</groupId>
             <artifactId>legacylauncher</artifactId>
